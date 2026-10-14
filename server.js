@@ -1,9 +1,7 @@
 // Servidor simples (sem dependências) — Node 18+
 // Assina as chamadas da API de Afiliados da Shopee e serve a página.
-// Uso:  SHOPEE_APP_ID=seu_app_id 
-
-SHOPEE_APP_ID=18353300004 
-SHOPEE_SECRET=NG5U42PVHX6FNUFUOO3GWGQKTT2BXBFY
+// Uso local:  SHOPEE_APP_ID=seu_app_id SHOPEE_SECRET=seu_secret node server.js
+// No Netlify, a API roda em netlify/functions/achadinhos.mts.
 
 const http = require("node:http");
 const fs = require("node:fs");
