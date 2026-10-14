@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Achadinhos da Shopee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1f1b2e;
+    --muted: #6a6580;
+    --bg: #f1eefc;
+    --card: #ffffff;
+    --accent: #ee4d2d;
+    --tag: #ffd23f;
+    --line: #ddd7f3;
+    --display: "Bricolage Grotesque", "Arial Black", sans-serif;
+    --body: "DM Sans", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #f1eefc;
+      --muted: #a9a3c4;
+      --bg: #17142a;
+      --card: #231f3b;
+      --line: #342f55;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.5;
+  }
+  header {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 20px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 7vw, 4.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0 0 12px;
+  }
+  h1 span {
+    display: inline-block;
+    background: var(--tag);
+    color: #1f1b2e;
+    padding: 0 .18em;
+    transform: rotate(-2deg);
+  }
+  header p { margin: 0; color: var(--muted); max-width: 52ch; }
+
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls form {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  input, select, button { font: inherit; }
+  input[type=search] {
+    flex: 1 1 240px;
+    padding: 12px 14px;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--ink);
+  }
+  select {
+    padding: 12px 10px;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--ink);
+  }
+  button {
+    cursor: pointer;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+  }
+  button:hover { filter: brightness(1.08); }
+  :is(input, select, button, a):focus-visible { outline: 3px solid var(--tag); outline-offset: 2px; }
+
+  main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 60px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+  }
+  .item {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+  .item:hover { border-color: var(--accent); }
+  .thumb { position: relative; aspect-ratio: 1; background: var(--line); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .off {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: var(--tag);
+    color: #1f1b2e;
+    font-weight: 700;
+    font-size: .85rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .info { padding: 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .name {
+    font-size: .92rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.8em;
+  }
+  .price { font-family: var(--display); font-weight: 800; font-size: 1.35rem; color: var(--accent); }
+  .meta { font-size: .8rem; color: var(--muted); margin-top: auto; }
+
+  .state { text-align: center; color: var(--muted); padding: 60px 0; }
+  .more { display: block; margin: 28px auto 0; }
+  .skeleton { height: 330px; border-radius: 14px; background: var(--line); opacity: .5; }
+  @media (prefers-reduced-motion: no-preference) {
+    .skeleton { animation: pulse 1.2s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: .25; } }
+  }
+  footer { text-align: center; font-size: .8rem; color: var(--muted); padding: 0 20px 40px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Achadinhos <span>da Shopee</span></h1>
+  <p>Produtos com bom preço, separados por busca. Toque em um item para ver na Shopee.</p>
+</header>
+
+<div class="controls">
+  <form id="form">
+    <input type="search" id="q" placeholder="Buscar produto, ex.: organizador de cozinha" aria-label="Buscar produto">
+    <select id="sort" aria-label="Ordenar por">
+      <option value="2">Mais vendidos</option>
+      <option value="1">Mais relevantes</option>
+      <option value="4">Menor preço</option>
+      <option value="3">Maior preço</option>
+    </select>
+    <button type="submit">Buscar</button>
+  </form>
+</div>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <div class="state" id="state" hidden></div>
+  <button class="more" id="more" hidden>Ver mais achadinhos</button>
+</main>
+
+<footer>Os preços e as ofertas podem mudar a qualquer momento na Shopee.</footer>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const grid = $("grid"), state = $("state"), more = $("more");
+  let page = 1;
+
+  const brl = (v) => Number(v).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const compact = (n) => Number(n).toLocaleString("pt-BR", { notation: "compact" });
+
+  function card(p) {
+    const price = p.priceMin && p.priceMax && p.priceMin !== p.priceMax
+      ? `${brl(p.priceMin)} – ${brl(p.priceMax)}`
+      : brl(p.price || p.priceMin);
+    const off = Number(p.priceDiscountRate) > 0 ? `<span class="off">-${Number(p.priceDiscountRate)}%</span>` : "";
+    const rating = Number(p.ratingStar) ? `★ ${Number(p.ratingStar).toFixed(1)}` : "";
+    const sales = Number(p.sales) ? `${compact(p.sales)} vendidos` : "";
+    const link = p.offerLink || p.productLink;
+    return `<a class="item" href="${esc(link)}" target="_blank" rel="noopener sponsored">
+      <div class="thumb"><img src="${esc(p.imageUrl)}" alt="" loading="lazy">${off}</div>
+      <div class="info">
+        <div class="name">${esc(p.productName)}</div>
+        <div class="price">${price}</div>
+        <div class="meta">${[rating, sales].filter(Boolean).join(" · ")}</div>
+      </div>
+    </a>`;
+  }
+
+  async function load(reset) {
+    if (reset) { page = 1; grid.innerHTML = '<div class="skeleton"></div>'.repeat(8); }
+    state.hidden = true; more.hidden = true;
+
+    const params = new URLSearchParams({ q: $("q").value.trim(), sort: $("sort").value, page });
+    try {
+      const res = await fetch("/api/achadinhos?" + params);
+      const json = await res.json();
+      if (json.errors) throw new Error(json.errors[0]?.message || "Erro na API");
+
+      const { nodes, pageInfo } = json.data.productOfferV2;
+      if (reset) grid.innerHTML = "";
+      grid.insertAdjacentHTML("beforeend", nodes.map(card).join(""));
+
+      if (!grid.children.length) {
+        state.textContent = "Nenhum produto encontrado. Tente outra palavra.";
+        state.hidden = false;
+      }
+      more.hidden = !pageInfo.hasNextPage;
+    } catch (e) {
+      if (reset) grid.innerHTML = "";
+      state.textContent = "Não foi possível carregar os produtos: " + e.message;
+      state.hidden = false;
+    }
+  }
+
+  $("form").addEventListener("submit", (e) => { e.preventDefault(); load(true); });
+  $("sort").addEventListener("change", () => load(true));
+  more.addEventListener("click", () => { page++; load(false); });
+
+  load(true);
+</script>
+</body>
+</html>
