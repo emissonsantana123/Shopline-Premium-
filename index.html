@@ -1,244 +1,423 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Achadinhos da Shopee</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ee4d2d">
+<meta name="robots" content="index,follow">
+<title>SHOPLINE PREMIUM | Achadinhos</title>
+<meta name="description" content="Descubra achadinhos da Shopline Premium.">
+
 <style>
-  :root {
-    --ink: #1f1b2e;
-    --muted: #6a6580;
-    --bg: #f1eefc;
-    --card: #ffffff;
-    --accent: #ee4d2d;
-    --tag: #ffd23f;
-    --line: #ddd7f3;
-    --display: "Bricolage Grotesque", "Arial Black", sans-serif;
-    --body: "DM Sans", system-ui, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ink: #f1eefc;
-      --muted: #a9a3c4;
-      --bg: #17142a;
-      --card: #231f3b;
-      --line: #342f55;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--body);
-    line-height: 1.5;
-  }
-  header {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 48px 20px 20px;
-  }
-  h1 {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(2.4rem, 7vw, 4.6rem);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin: 0 0 12px;
-  }
-  h1 span {
-    display: inline-block;
-    background: var(--tag);
-    color: #1f1b2e;
-    padding: 0 .18em;
-    transform: rotate(-2deg);
-  }
-  header p { margin: 0; color: var(--muted); max-width: 52ch; }
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#292929}
+a{text-decoration:none}
+button{cursor:pointer}
 
-  .controls {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background: var(--bg);
-    border-bottom: 1px solid var(--line);
-  }
-  .controls form {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 12px 20px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  input, select, button { font: inherit; }
-  input[type=search] {
-    flex: 1 1 240px;
-    padding: 12px 14px;
-    border: 2px solid var(--line);
-    border-radius: 10px;
-    background: var(--card);
-    color: var(--ink);
-  }
-  select {
-    padding: 12px 10px;
-    border: 2px solid var(--line);
-    border-radius: 10px;
-    background: var(--card);
-    color: var(--ink);
-  }
-  button {
-    cursor: pointer;
-    padding: 12px 20px;
-    border: 0;
-    border-radius: 10px;
-    background: var(--accent);
-    color: #fff;
-    font-weight: 700;
-  }
-  button:hover { filter: brightness(1.08); }
-  :is(input, select, button, a):focus-visible { outline: 3px solid var(--tag); outline-offset: 2px; }
+header{background:linear-gradient(135deg,#ee4d2d,#ff7545);color:white;padding:25px 16px;text-align:center}
+header h1{margin:0;font-size:25px;font-weight:900}
+header p{margin:8px 0 0;font-size:14px}
 
-  main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 60px; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 16px;
-  }
-  .item {
-    display: flex;
-    flex-direction: column;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-  }
-  .item:hover { border-color: var(--accent); }
-  .thumb { position: relative; aspect-ratio: 1; background: var(--line); }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .off {
-    position: absolute;
-    top: 8px; left: 8px;
-    background: var(--tag);
-    color: #1f1b2e;
-    font-weight: 700;
-    font-size: .85rem;
-    padding: 2px 8px;
-    border-radius: 6px;
-  }
-  .info { padding: 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-  .name {
-    font-size: .92rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 2.8em;
-  }
-  .price { font-family: var(--display); font-weight: 800; font-size: 1.35rem; color: var(--accent); }
-  .meta { font-size: .8rem; color: var(--muted); margin-top: auto; }
+.controles{position:sticky;top:0;z-index:5;background:white;padding:12px;display:flex;gap:8px;box-shadow:0 3px 12px #0000000d}
+input,select{min-width:0;padding:12px;border:1px solid #ddd;border-radius:10px;background:white;font-size:14px}
+.controles input{flex:1}
+.controles button,.botao{border:0;border-radius:10px;background:#ee4d2d;color:white;padding:12px 15px;font-weight:bold;transition:.2s}
+.controles button:hover,.botao:hover{background:#d83d20;transform:translateY(-1px)}
 
-  .state { text-align: center; color: var(--muted); padding: 60px 0; }
-  .more { display: block; margin: 28px auto 0; }
-  .skeleton { height: 330px; border-radius: 14px; background: var(--line); opacity: .5; }
-  @media (prefers-reduced-motion: no-preference) {
-    .skeleton { animation: pulse 1.2s ease-in-out infinite; }
-    @keyframes pulse { 50% { opacity: .25; } }
-  }
-  footer { text-align: center; font-size: .8rem; color: var(--muted); padding: 0 20px 40px; }
+.alerta{margin:16px auto;padding:16px;max-width:1100px;background:#fff;border:1px solid #ffe0d5;border-radius:15px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.alerta p{margin:6px 0 0;font-size:13px;color:#666}
+.alerta button{border:0;border-radius:10px;background:#ee4d2d;color:white;padding:12px 15px;font-weight:bold}
+
+#api-vitrine .grid{max-width:1200px;margin:16px auto;padding:0 12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+#api-vitrine .card{background:white;border:1px solid #eee;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px #00000008;transition:.2s}
+#api-vitrine .card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #00000012}
+#api-vitrine .card img{width:100%;aspect-ratio:1/1;object-fit:contain;background:white;padding:8px}
+#api-vitrine .info{padding:12px}
+#api-vitrine .nome{font-size:14px;line-height:1.4;height:40px;overflow:hidden;margin:0 0 10px}
+#api-vitrine .preco{font-size:19px;font-weight:800;color:#ee4d2d;margin:8px 0}
+#api-vitrine .detalhe{font-size:12px;color:#777;margin:6px 0 12px}
+#api-vitrine .botao{display:block;text-align:center;font-size:13px}
+#status{text-align:center;padding:16px;color:#666}
+#mais{display:block;margin:10px auto 28px;border:0;border-radius:10px;background:#ee4d2d;color:white;padding:12px 15px;font-weight:bold}
+#mais[hidden]{display:none}
+
+.modal{display:none;position:fixed;inset:0;z-index:10;background:#0009;padding:20px;align-items:center;justify-content:center}
+.modal.aberto{display:flex}
+.conteudo{background:white;max-width:360px;width:100%;padding:22px;border-radius:18px;position:relative}
+.conteudo h2{margin-top:0;color:#ee4d2d}
+.conteudo li{margin:12px 0;line-height:1.4}
+.fechar{position:absolute;right:12px;top:10px;background:#eee;color:#333;padding:7px 11px;border:0;border-radius:8px}
+
+footer{text-align:center;background:#fff;padding:22px;color:#777;font-size:12px}
+
+/* Vitrine fixa: estilos separados para não conflitar com a API */
+.vitrine-fixa .hero{text-align:center;padding:25px 12px 10px}
+.vitrine-fixa .hero h2{font-size:26px;margin:0 0 8px}
+.vitrine-fixa .grid{max-width:1200px;margin:auto;padding:20px 15px 45px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.vitrine-fixa .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px #0001;display:flex;flex-direction:column;transition:.2s}
+.vitrine-fixa .card:hover{transform:translateY(-4px);box-shadow:0 8px 22px #0002}
+.vitrine-fixa .pic{position:relative}
+.vitrine-fixa .pic img{width:100%;height:215px;object-fit:contain;display:block}
+.vitrine-fixa .tag{position:absolute;z-index:2;top:10px;left:10px;padding:6px 9px;border-radius:20px;background:#ee4d2d;color:#fff;font-size:9px;font-weight:bold}
+.vitrine-fixa .ml{background:#ffe600!important;color:#222!important}
+.vitrine-fixa .info{padding:13px;display:flex;flex-direction:column;flex:1}
+.vitrine-fixa .info h3{font-size:14px;line-height:1.35;margin:0 0 7px}
+.vitrine-fixa .desc{font-size:11px;color:#777;line-height:1.4;margin:0}
+.vitrine-fixa .price{margin-top:auto;padding-top:10px;color:#e64525;font-size:20px;font-weight:900}
+.vitrine-fixa .btn{display:block;margin-top:11px;padding:11px 5px;border-radius:8px;text-align:center;background:#ee4d2d;color:#fff;font-size:11px;font-weight:bold}
+.vitrine-fixa .btn.ml{background:#ffe600!important;color:#222!important}
+
+@media(max-width:850px){
+#api-vitrine .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:950px){
+.vitrine-fixa .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:560px){
+header h1{font-size:22px}
+#api-vitrine .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#api-vitrine .info{padding:9px}
+#api-vitrine .nome{font-size:13px}
+#api-vitrine .preco{font-size:17px}
+.alerta{margin:12px;align-items:flex-start;flex-direction:column}
+.controles{flex-wrap:wrap}
+.controles input{flex-basis:100%}
+}
+@media(max-width:650px){
+.vitrine-fixa .hero h2{font-size:21px}
+.vitrine-fixa .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:15px 9px 30px}
+.vitrine-fixa .pic img{height:170px}
+.vitrine-fixa .info{padding:9px}
+.vitrine-fixa .info h3{font-size:12px}
+.vitrine-fixa .desc{font-size:10px}
+.vitrine-fixa .price{font-size:17px}
+.vitrine-fixa .btn{font-size:10px;padding:10px 3px}
+}
+@media(max-width:380px){
+.vitrine-fixa .grid{gap:7px;padding-left:7px;padding-right:7px}
+.vitrine-fixa .pic img{height:150px}
+.vitrine-fixa .info h3{font-size:11px}
+.vitrine-fixa .btn{font-size:9px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <h1>Achadinhos <span>da Shopee</span></h1>
-  <p>Produtos com bom preço, separados por busca. Toque em um item para ver na Shopee.</p>
+  <h1>👑 SHOPLINE PREMIUM</h1>
+  <p>Seus achadinhos favoritos em um só lugar!</p>
 </header>
 
-<div class="controls">
-  <form id="form">
-    <input type="search" id="q" placeholder="Buscar produto, ex.: organizador de cozinha" aria-label="Buscar produto">
-    <select id="sort" aria-label="Ordenar por">
-      <option value="2">Mais vendidos</option>
-      <option value="1">Mais relevantes</option>
-      <option value="4">Menor preço</option>
-      <option value="3">Maior preço</option>
+<section id="api-vitrine">
+  <div class="controles">
+    <input id="busca" placeholder="🔎 Buscar produtos..." aria-label="Buscar produtos">
+    <select id="ordem" aria-label="Ordenar produtos">
+      <option value="">Mais relevantes</option>
+      <option value="price_asc">Menor preço</option>
+      <option value="price_desc">Maior preço</option>
     </select>
-    <button type="submit">Buscar</button>
-  </form>
+    <button type="button" onclick="carregar(true)">Buscar</button>
+  </div>
+
+  <section class="alerta">
+    <div>
+      <strong>📱 VEIO DO TIKTOK?</strong>
+      <p>Abra esta página no navegador para uma melhor experiência.</p>
+    </div>
+    <button type="button" onclick="modal(true)">🌐 COMO ABRIR</button>
+  </section>
+
+  <main>
+    <div class="grid" id="grid"></div>
+    <p id="status" role="status">Carregando produtos...</p>
+    <button id="mais" type="button" onclick="carregar(false)" hidden>Ver mais produtos ↓</button>
+  </main>
+</section>
+
+<div class="modal" id="modal" onclick="if(event.target===this)modal(false)">
+  <div class="conteudo">
+    <button class="fechar" type="button" onclick="modal(false)" aria-label="Fechar">✕</button>
+    <h2>🚀 Abra no navegador</h2>
+    <ol>
+      <li>No TikTok, toque nos <b>três pontinhos (⋯)</b>.</li>
+      <li>Escolha <b>Abrir no navegador</b>.</li>
+      <li>Se aparecer a opção, selecione <b>Chrome</b>.</li>
+    </ol>
+    <button type="button" onclick="modal(false)">Entendi!</button>
+  </div>
 </div>
 
-<main>
-  <div class="grid" id="grid"></div>
-  <div class="state" id="state" hidden></div>
-  <button class="more" id="more" hidden>Ver mais achadinhos</button>
-</main>
+<section class="vitrine-fixa">
+  <div class="hero">
+    <h2>🔥 Viralizou no Tik Tok</h2>
+  </div>
+  <main class="grid" id="produtos"></main>
+</section>
 
-<footer>Os preços e as ofertas podem mudar a qualquer momento na Shopee.</footer>
+<footer>
+  SHOPLINE PREMIUM © 2026<br>
+  Alguns links podem gerar comissão para nossa loja, sem custo adicional para você.
+</footer>
+
+<center>
+<script src="https://pl31016031.profitableratecpmnetwork.com/59/aa/af/59aaafe0dcda978256ba92a55b66def1.js"></script>
+</center>
 
 <script>
-  const $ = (id) => document.getElementById(id);
-  const grid = $("grid"), state = $("state"), more = $("more");
-  let page = 1;
+const $=id=>document.getElementById(id);
+let pagina=1,carregando=false,temMais=true;
 
-  const brl = (v) => Number(v).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const compact = (n) => Number(n).toLocaleString("pt-BR", { notation: "compact" });
+/* Endereço da API local. Ao publicar, troque pela URL HTTPS da API. */
+const API_BASE="http://127.0.0.1:3000";
 
-  function card(p) {
-    const price = p.priceMin && p.priceMax && p.priceMin !== p.priceMax
-      ? `${brl(p.priceMin)} – ${brl(p.priceMax)}`
-      : brl(p.price || p.priceMin);
-    const off = Number(p.priceDiscountRate) > 0 ? `<span class="off">-${Number(p.priceDiscountRate)}%</span>` : "";
-    const rating = Number(p.ratingStar) ? `★ ${Number(p.ratingStar).toFixed(1)}` : "";
-    const sales = Number(p.sales) ? `${compact(p.sales)} vendidos` : "";
-    const link = p.offerLink || p.productLink;
-    return `<a class="item" href="${esc(link)}" target="_blank" rel="noopener sponsored">
-      <div class="thumb"><img src="${esc(p.imageUrl)}" alt="" loading="lazy">${off}</div>
-      <div class="info">
-        <div class="name">${esc(p.productName)}</div>
-        <div class="price">${price}</div>
-        <div class="meta">${[rating, sales].filter(Boolean).join(" · ")}</div>
-      </div>
-    </a>`;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+const urlSegura=u=>{
+  try{
+    const x=new URL(u);
+    return x.protocol==="https:"?x.href:"#";
+  }catch{
+    return "#";
   }
+};
 
-  async function load(reset) {
-    if (reset) { page = 1; grid.innerHTML = '<div class="skeleton"></div>'.repeat(8); }
-    state.hidden = true; more.hidden = true;
+function modal(abrir){
+  $("modal").classList.toggle("aberto",abrir);
+}
 
-    const params = new URLSearchParams({ q: $("q").value.trim(), sort: $("sort").value, page });
-    try {
-      const res = await fetch("/api/achadinhos?" + params);
-      const json = await res.json();
-      if (json.errors) throw new Error(json.errors[0]?.message || "Erro na API");
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")modal(false);
+});
 
-      const { nodes, pageInfo } = json.data.productOfferV2;
-      if (reset) grid.innerHTML = "";
-      grid.insertAdjacentHTML("beforeend", nodes.map(card).join(""));
+$("busca").addEventListener("keydown",e=>{
+  if(e.key==="Enter")carregar(true);
+});
 
-      if (!grid.children.length) {
-        state.textContent = "Nenhum produto encontrado. Tente outra palavra.";
-        state.hidden = false;
-      }
-      more.hidden = !pageInfo.hasNextPage;
-    } catch (e) {
-      if (reset) grid.innerHTML = "";
-      state.textContent = "Não foi possível carregar os produtos: " + e.message;
-      state.hidden = false;
+$("ordem").addEventListener("change",()=>{
+  carregar(true);
+});
+
+async function carregar(nova=true){
+  if(carregando)return;
+  if(nova){
+    pagina=1;
+    temMais=true;
+    $("grid").innerHTML="";
+  }
+  if(!temMais)return;
+
+  carregando=true;
+  $("status").textContent="Carregando produtos...";
+  $("mais").hidden=true;
+
+  try{
+    const p=new URLSearchParams({
+      busca:$("busca").value.trim(),
+      page:pagina
+    });
+
+    const r=await fetch(API_BASE+"/api/produtos?"+p);
+    if(!r.ok)throw Error("Falha na API");
+
+    const json=await r.json();
+
+    /* Aceita tanto uma lista direta quanto uma resposta GraphQL */
+    const dados=Array.isArray(json)
+      ?json
+      :(json.data?.productOfferV2?.nodes||json.nodes||json.produtos||[]);
+
+    const produtos=[...dados];
+
+    if($("ordem").value==="price_asc"){
+      produtos.sort((a,b)=>Number(a.priceMin??a.price??0)-Number(b.priceMin??b.price??0));
+    }else if($("ordem").value==="price_desc"){
+      produtos.sort((a,b)=>Number(b.priceMin??b.price??0)-Number(a.priceMin??a.price??0));
     }
+
+    produtos.forEach(x=>{
+      const nome=esc(x.productName||x.nome||"Produto");
+      const imagem=urlSegura(x.imageUrl||x.imagem||"");
+      const link=urlSegura(x.offerLink||x.linkAfiliado||x.productLink||"");
+      const preco=Number(x.priceMin??x.price??x.preco??0);
+      const precoMax=Number(x.priceMax??preco);
+
+      const precoTexto=preco>0
+        ?"R$ "+preco.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})
+        :"Ver preço";
+
+      const faixa=precoMax>preco
+        ?" a R$ "+precoMax.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})
+        :"";
+
+      const card=document.createElement("article");
+      card.className="card";
+
+      card.innerHTML=`
+        <img src="${esc(imagem)}" alt="${nome}" loading="lazy">
+        <div class="info">
+          <p class="nome">${nome}</p>
+          <div class="preco">${precoTexto}${faixa}</div>
+          <p class="detalhe">⭐ ${esc(x.ratingStar||x.rating||"—")} · ${esc(x.sales||0)} vendidos</p>
+          <a class="botao" href="${esc(link)}" target="_blank" rel="noopener noreferrer">VER PRODUTO ↗</a>
+        </div>`;
+
+      $("grid").appendChild(card);
+    });
+
+    /* A rota atual da API retorna uma lista simples, sem paginação. */
+    temMais=!!json.data?.productOfferV2?.pageInfo?.hasNextPage;
+    pagina++;
+
+    $("status").textContent=$("grid").children.length
+      ?"Você está vendo os achadinhos disponíveis."
+      :"Nenhum produto encontrado.";
+
+    $("mais").hidden=!temMais;
+  }catch(e){
+    $("status").textContent="Não foi possível carregar os produtos. Verifique a API e tente novamente.";
+  }finally{
+    carregando=false;
   }
+}
 
-  $("form").addEventListener("submit", (e) => { e.preventDefault(); load(true); });
-  $("sort").addEventListener("change", () => load(true));
-  more.addEventListener("click", () => { page++; load(false); });
+carregar(true);
 
-  load(true);
+/* Vitrine fixa de produtos e links */
+const produtos=[
+
+["S","Vitrine da Shopee","Acesse nossos produtos virais na Shopee","",
+"https://i.postimg.cc/vZcrTWsw/file-00000000342881fb93bfe24ef6fcbe9e.png",
+"https://collshp.com/shoplinepremium?view=storefront"],
+
+["M","Vitrine do Mercado Livre","Acesse nossos produtos virais no Mercado Livre","",
+"https://i.postimg.cc/fy8dTbqL/file-0000000013a8820e938383600f857d59.png",
+"https://mercadolivre.com/sec/1AgmG6Q"],
+
+["S","Acendedor de Churrasqueira Maçarico","Acendedor prático para churrasqueira","R$ 33,00",
+"https://i.postimg.cc/GtKcTW4G/file-0000000054e4820e90122fb69f2622a5.png",
+"https://s.shopee.com.br/2gB8xNh9an"],
+
+["S",'Mini TV Digital Monitor Portátil 10 ou 12"',"Monitor portátil para diferentes situações.","R$ 475,00",
+"https://i.postimg.cc/3x48dwfq/no-mark-React-Native-snapshot-image-193.png",
+"https://s.shopee.com.br/9fKtI7fwRB"],
+
+["S","Serra de Esquadria de Bancada 8 POL 1200W SCHULZ","Ferramenta para cortes precisos.","R$ 994,46",
+"https://i.postimg.cc/qvTrMGnL/no-mark-React-Native-snapshot-image-187.png",
+"https://s.shopee.com.br/2BFb73QR5v"],
+
+["S",'Multiplicador de Torque 1/2" 3200 N·m',"Ferramenta automotiva para multiplicação de torque.","R$ 463,48",
+"https://i.postimg.cc/j2P1GGMX/no-mark-React-Native-snapshot-image-200.png",
+"https://s.shopee.com.br/3qMlKJnEUx"],
+
+["S","Gabarito DALTONOW para Corte com 8 Furos","Ferramenta para trabalhos de precisão.","R$ 135,60",
+"https://i.postimg.cc/MTgRFYK3/no-mark-React-Native-snapshot-image-203.png",
+"https://s.shopee.com.br/9V10lTJFiX"],
+
+["S","Macaco Sanfona 12V Elétrico Automotivo 3 Toneladas","Equipamento automotivo elétrico de 12V.","R$ 333,77",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLBUw9WrRLk_ZnPrD_PMP0RMyY__up6ee8TctGKa4-uQ&s=10",
+"https://s.shopee.com.br/5AslvcPR7x"],
+
+["S","Mop Elétrico Automático Inteligente Sem Fio","Limpador de chão com cabeça dupla.","R$ 360,05",
+"https://i.postimg.cc/VsK0td4c/no-mark-React-Native-snapshot-image-198.png",
+"https://s.shopee.com.br/60QleeZZh8"],
+
+["S","Banheira Dobrável 117cm Ofurô 200 Litros","Banheira dobrável para banho e relaxamento.","R$ 695,17",
+"https://i.postimg.cc/fRCRGPP6/no-mark-React-Native-snapshot-image-197.png",
+"https://s.shopee.com.br/1BLRLjl3Os"],
+
+["S","Ralo Inteligente Inox 10x10 ou 15x15cm","Ralo para banheiro com sistema click.","R$ 20,90",
+"https://i.postimg.cc/BvbVq8h6/no-mark-React-Native-snapshot-image-201.png",
+"https://s.shopee.com.br/9V1T5ogZmA"],
+
+["S","Bidê para Vaso Sanitário Duplo Ajustável","Acessório para banheiro com instalação prática.","R$ 130,24",
+"https://i.postimg.cc/4xq35ch4/no-mark-React-Native-snapshot-image-199.png",
+"https://s.shopee.com.br/8KpVhfl193"],
+
+["M","Ralo Click 15x15 Inteligente Pop Up Inox","Ralo inteligente em inox com acabamento premium.","R$ 28,50",
+"https://i.postimg.cc/BvbVq8h6/no-mark-React-Native-snapshot-image-201.png",
+"https://meli.la/17E2fQL"],
+
+["M","Maçarico Portátil a Gás com Regulagem 360g 3300 - Fertak","Maçarico portátil com regulagem.","R$ 37,90",
+"https://i.postimg.cc/XvkTJSW1/no-mark-React-Native-snapshot-image-190.png",
+"https://meli.la/223PpBh"],
+
+["S","Disco de Corte Diamantado para Cerâmica e Mármore","Disco para corte e moagem.","R$ 39,50",
+"https://i.postimg.cc/gJQ06yD0/no-mark-React-Native-snapshot-image-204.png",
+"https://s.shopee.com.br/4fwDL1s9XR"],
+
+["S","Broca de Furo Quadrado Adaptadora Kit 5","Acessório para furadeira de bancada.","R$ 67,30",
+"https://i.postimg.cc/P59V9P2w/no-mark-React-Native-snapshot-image-205.png",
+"https://s.shopee.com.br/AKas4iKCBM"],
+
+["S","Protetor Para a cozinha Anti-respingos de Aluminio Fogão a Gás, Cozinha","Protetor de fogão.","R$ 19,99",
+"https://i.postimg.cc/T1JGbkTv/no-mark-React-Native-snapshot-image-213.png",
+"https://s.shopee.com.br/7fYv6clYH7"],
+
+["S","Capinha capa case magsafe eletroplateada com proteção de lente para iphone 11 12 13 14 15 16 17 18 7/8plus promax","Capa de iPhone.","R$ 15,99",
+"https://i.postimg.cc/HsMXqX3K/no-mark-React-Native-snapshot-image-215.png",
+"https://s.shopee.com.br/6fhawG2EP4"],
+
+["S","Conector Y Duplo em Zinco para Torneira 3/4 Divisor de Água com Válvulas","Conector duplo para água.","R$ 29,99",
+"https://i.postimg.cc/MKqDths3/no-mark-React-Native-snapshot-image-217.png",
+"https://s.shopee.com.br/qjpDFousG"],
+
+["S","Travesseiro de Descanso Apoio Cabeça e Lombar Almofada Multiuso Ergométrico","Travesseiro de descanso.","R$ 94,91",
+"https://i.postimg.cc/3wj8wP24/no-mark-React-Native-snapshot-image-221.png",
+"https://s.shopee.com.br/3g2mM23iw9"],
+
+["S","Caixa organizadora armazenamento dobrável empilhável multiuso","Caixa dobrável para casa e escritório.","R$ 198,55",
+"https://i.postimg.cc/rw3jpHMb/no-mark-React-Native-snapshot-image-223.png",
+"https://s.shopee.com.br/4LHMEhIFyD"],
+
+["S","Suporte de garrafa de água para motocicleta com guidão ajustável","Suporte universal para garrafa.","R$ 15,89",
+"https://i.postimg.cc/tCHY9tKw/no-mark-React-Native-snapshot-image-224.png",
+"https://s.shopee.com.br/3B7mDEpZhN"],
+
+["S","Travesseiro Japonês Ortopédico de Espuma Viscoelástica","Apoio para pescoço e descanso.","R$ 160,31",
+"https://i.postimg.cc/0QFZzHYy/no-mark-React-Native-snapshot-image-226.png",
+"https://s.shopee.com.br/4Vd9o98SFq"],
+
+["S","Mochila De Nylon Dobrável Compacta Impermeável","Mochila para viagem, escola e academia.","R$ 14,98",
+"https://i.postimg.cc/3RYYPn4t/no-mark-React-Native-snapshot-image-228.png",
+"https://s.shopee.com.br/4Vaes7mnbN"]
+
+];
+
+const produtosEl=document.getElementById("produtos");
+
+produtosEl.innerHTML=produtos.map(p=>{
+  const ml=p[0]==="M";
+  const vit=p[1].includes("Vitrine");
+
+  return `
+  <article class="card">
+    <div class="pic">
+      <span class="tag ${ml?"ml":""}">
+        ${ml?"MERCADO LIVRE":"SHOPEE"}
+      </span>
+      <a href="${esc(p[5])}" target="_blank" rel="noopener noreferrer">
+        <img src="${esc(p[4])}" alt="${esc(p[1])}" loading="lazy">
+      </a>
+    </div>
+    <div class="info">
+      <h3>${esc(p[1])}</h3>
+      <p class="desc">${esc(p[2])}</p>
+      ${p[3]?`<div class="price">${esc(p[3])}</div>`:""}
+      <a class="btn ${ml?"ml":""}" href="${esc(p[5])}" target="_blank" rel="noopener noreferrer">
+        ${vit?(ml?"🛒 ACESSAR MERCADO LIVRE":"🛍️ ACESSAR SHOPEE"):"VER PRODUTO"}
+      </a>
+    </div>
+  </article>`;
+}).join("");
 </script>
+
+<br><br><br>
+
+<center>
+<script src="https://pl31016031.profitableratecpmnetwork.com/59/aa/af/59aaafe0dcda978256ba92a55b66def1.js"></script>
+</center>
+
 </body>
 </html>
