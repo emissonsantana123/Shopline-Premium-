@@ -1,292 +1,210 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#ee4d2d">
-<meta name="robots" content="index,follow">
 <title>SHOPLINE PREMIUM | Achadinhos</title>
 <meta name="description" content="Descubra achadinhos da Shopline Premium.">
 
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#292929}
-a{text-decoration:none}
-button{cursor:pointer}
-
 header{background:linear-gradient(135deg,#ee4d2d,#ff7545);color:white;padding:25px 16px;text-align:center}
 header h1{margin:0;font-size:25px;font-weight:900}
 header p{margin:8px 0 0;font-size:14px}
-
 .controles{position:sticky;top:0;z-index:5;background:white;padding:12px;display:flex;gap:8px;box-shadow:0 3px 12px #0000000d}
 input,select{min-width:0;padding:12px;border:1px solid #ddd;border-radius:10px;background:white;font-size:14px}
-.controles input{flex:1}
-.controles button,.botao{border:0;border-radius:10px;background:#ee4d2d;color:white;padding:12px 15px;font-weight:bold;transition:.2s}
-.controles button:hover,.botao:hover{background:#d83d20;transform:translateY(-1px)}
-
+input{flex:1}
 .alerta{margin:16px auto;padding:16px;max-width:1100px;background:#fff;border:1px solid #ffe0d5;border-radius:15px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .alerta p{margin:6px 0 0;font-size:13px;color:#666}
-.alerta button{border:0;border-radius:10px;background:#ee4d2d;color:white;padding:12px 15px;font-weight:bold}
-
-#api-vitrine .grid{max-width:1200px;margin:16px auto;padding:0 12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-#api-vitrine .card{background:white;border:1px solid #eee;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px #00000008;transition:.2s}
-#api-vitrine .card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #00000012}
-#api-vitrine .card img{width:100%;aspect-ratio:1/1;object-fit:contain;background:white;padding:8px}
-#api-vitrine .info{padding:12px}
-#api-vitrine .nome{font-size:14px;line-height:1.4;height:40px;overflow:hidden;margin:0 0 10px}
-#api-vitrine .preco{font-size:19px;font-weight:800;color:#ee4d2d;margin:8px 0}
-#api-vitrine .detalhe{font-size:12px;color:#777;margin:6px 0 12px}
-#api-vitrine .botao{display:block;text-align:center;font-size:13px}
+button,.botao{border:0;border-radius:10px;background:#ee4d2d;color:white;padding:12px 15px;font-weight:bold;cursor:pointer;text-decoration:none;transition:.2s}
+button:hover,.botao:hover{background:#d83d20;transform:translateY(-1px)}
+.grid{max-width:1200px;margin:16px auto;padding:0 12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{background:white;border:1px solid #eee;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px #00000008;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #00000012}
+.card img{width:100%;aspect-ratio:1/1;object-fit:contain;background:white;padding:8px}
+.info{padding:12px}
+.nome{font-size:14px;line-height:1.4;height:40px;overflow:hidden;margin:0 0 10px}
+.preco{font-size:19px;font-weight:800;color:#ee4d2d;margin:8px 0}
+.detalhe{font-size:12px;color:#777;margin:6px 0 12px}
+.card .botao{display:block;text-align:center;font-size:18px}
 #status{text-align:center;padding:16px;color:#666}
-#mais{display:block;margin:10px auto 28px;border:0;border-radius:10px;background:#ee4d2d;color:white;padding:12px 15px;font-weight:bold}
-#mais[hidden]{display:none}
-
+#mais{display:block;margin:10px auto 28px}
+footer{text-align:center;background:#fff;padding:22px;color:#777;font-size:12px}
 .modal{display:none;position:fixed;inset:0;z-index:10;background:#0009;padding:20px;align-items:center;justify-content:center}
 .modal.aberto{display:flex}
 .conteudo{background:white;max-width:360px;width:100%;padding:22px;border-radius:18px;position:relative}
 .conteudo h2{margin-top:0;color:#ee4d2d}
 .conteudo li{margin:12px 0;line-height:1.4}
-.fechar{position:absolute;right:12px;top:10px;background:#eee;color:#333;padding:7px 11px;border:0;border-radius:8px}
+.fechar{position:absolute;right:12px;top:10px;background:#eee;color:#333;padding:7px 11px}
 
-footer{text-align:center;background:#fff;padding:22px;color:#777;font-size:12px}
-
-/* Vitrine fixa: estilos separados para não conflitar com a API */
-.vitrine-fixa .hero{text-align:center;padding:25px 12px 10px}
-.vitrine-fixa .hero h2{font-size:26px;margin:0 0 8px}
-.vitrine-fixa .grid{max-width:1200px;margin:auto;padding:20px 15px 45px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
-.vitrine-fixa .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px #0001;display:flex;flex-direction:column;transition:.2s}
-.vitrine-fixa .card:hover{transform:translateY(-4px);box-shadow:0 8px 22px #0002}
-.vitrine-fixa .pic{position:relative}
-.vitrine-fixa .pic img{width:100%;height:215px;object-fit:contain;display:block}
-.vitrine-fixa .tag{position:absolute;z-index:2;top:10px;left:10px;padding:6px 9px;border-radius:20px;background:#ee4d2d;color:#fff;font-size:9px;font-weight:bold}
-.vitrine-fixa .ml{background:#ffe600!important;color:#222!important}
-.vitrine-fixa .info{padding:13px;display:flex;flex-direction:column;flex:1}
-.vitrine-fixa .info h3{font-size:14px;line-height:1.35;margin:0 0 7px}
-.vitrine-fixa .desc{font-size:11px;color:#777;line-height:1.4;margin:0}
-.vitrine-fixa .price{margin-top:auto;padding-top:10px;color:#e64525;font-size:20px;font-weight:900}
-.vitrine-fixa .btn{display:block;margin-top:11px;padding:11px 5px;border-radius:8px;text-align:center;background:#ee4d2d;color:#fff;font-size:11px;font-weight:bold}
-.vitrine-fixa .btn.ml{background:#ffe600!important;color:#222!important}
-
-@media(max-width:850px){
-#api-vitrine .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* Título Viralizou no Tik Tok */
+.hero{text-align:center;padding:25px 12px 10px}
+.hero h1{
+  font-size:32px;
+  font-weight:900;
+  margin-bottom:8px;
+  display:inline-block;
+  background:linear-gradient(90deg,#ee4d2d,#ff1744,#111,#ee4d2d);
+  background-size:300% auto;
+  color:transparent;
+  background-clip:text;
+  -webkit-background-clip:text;
+  animation:viralizar 3s linear infinite;
+  filter:drop-shadow(0 2px 5px #ee4d2d55);
 }
+@keyframes viralizar{
+  to{background-position:300% center}
+}
+
+a{text-decoration:none}
+.pic{position:relative}
+.pic img{width:100%;height:215px;object-fit:contain;display:block}
+.tag{position:absolute;z-index:2;top:10px;left:10px;padding:6px 9px;border-radius:20px;background:#ee4d2d;color:#fff;font-size:9px;font-weight:bold}
+.ml{background:#ffe600!important;color:#222!important}
+.info{padding:13px;display:flex;flex-direction:column;flex:1}
+.info h2{font-size:14px;line-height:1.35;margin-bottom:7px}
+.desc{font-size:11px;color:#777;line-height:1.4}
+.price{margin-top:auto;padding-top:10px;color:#e64525;font-size:20px;font-weight:900}
+.btn{display:block;margin-top:11px;padding:11px 5px;border-radius:8px;text-align:center;background:#ee4d2d;color:#fff;font-size:11px;font-weight:bold}
+
 @media(max-width:950px){
-.vitrine-fixa .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:850px){
+.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:650px){
+.hero h1{font-size:25px}
+.grid{grid-template-columns:repeat(2,1fr);gap:9px;padding:15px 9px 30px}
+.pic img{height:170px}
+.info{padding:9px}
+.info h2{font-size:12px}
+.desc{font-size:10px}
+.price{font-size:17px}
+.btn{font-size:10px;padding:10px 3px}
 }
 @media(max-width:560px){
 header h1{font-size:22px}
-#api-vitrine .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-#api-vitrine .info{padding:9px}
-#api-vitrine .nome{font-size:13px}
-#api-vitrine .preco{font-size:17px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .alerta{margin:12px;align-items:flex-start;flex-direction:column}
 .controles{flex-wrap:wrap}
 .controles input{flex-basis:100%}
 }
-@media(max-width:650px){
-.vitrine-fixa .hero h2{font-size:21px}
-.vitrine-fixa .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:15px 9px 30px}
-.vitrine-fixa .pic img{height:170px}
-.vitrine-fixa .info{padding:9px}
-.vitrine-fixa .info h3{font-size:12px}
-.vitrine-fixa .desc{font-size:10px}
-.vitrine-fixa .price{font-size:17px}
-.vitrine-fixa .btn{font-size:10px;padding:10px 3px}
-}
 @media(max-width:380px){
-.vitrine-fixa .grid{gap:7px;padding-left:7px;padding-right:7px}
-.vitrine-fixa .pic img{height:150px}
-.vitrine-fixa .info h3{font-size:11px}
-.vitrine-fixa .btn{font-size:9px}
+.grid{gap:7px;padding-left:7px;padding-right:7px}
+.pic img{height:150px}
+.info h2{font-size:11px}
+.btn{font-size:9px}
 }
 </style>
 </head>
 
 <body>
-
 <header>
   <h1>👑 SHOPLINE PREMIUM</h1>
   <p>Seus achadinhos favoritos em um só lugar!</p>
 </header>
 
-<section id="api-vitrine">
-  <div class="controles">
-    <input id="busca" placeholder="🔎 Buscar produtos..." aria-label="Buscar produtos">
-    <select id="ordem" aria-label="Ordenar produtos">
-      <option value="">Mais relevantes</option>
-      <option value="price_asc">Menor preço</option>
-      <option value="price_desc">Maior preço</option>
-    </select>
-    <button type="button" onclick="carregar(true)">Buscar</button>
+<div class="controles">
+  <input id="busca" placeholder="🔎 Buscar produtos..." aria-label="Buscar produtos">
+  <select id="ordem" aria-label="Ordenar produtos">
+    <option value="">Mais relevantes</option>
+    <option value="price_asc">Menor preço</option>
+    <option value="price_desc">Maior preço</option>
+  </select>
+  <button onclick="carregar(true)">Buscar</button>
+</div>
+
+<section class="alerta">
+  <div><strong>📱 VEIO DO TIKTOK?</strong>
+    <p>Abra esta página no navegador para uma melhor experiência.</p>
   </div>
-
-  <section class="alerta">
-    <div>
-      <strong>📱 VEIO DO TIKTOK?</strong>
-      <p>Abra esta página no navegador para uma melhor experiência.</p>
-    </div>
-    <button type="button" onclick="modal(true)">🌐 COMO ABRIR</button>
-  </section>
-
-  <main>
-    <div class="grid" id="grid"></div>
-    <p id="status" role="status">Carregando produtos...</p>
-    <button id="mais" type="button" onclick="carregar(false)" hidden>Ver mais produtos ↓</button>
-  </main>
+  <button onclick="modal(true)">🌐 COMO ABRIR</button>
 </section>
+<main>
+  <div class="grid" id="grid"></div>
+  <p id="status">Carregando produtos...</p>
+  <button id="mais" onclick="carregar(false)" hidden>Ver mais produtos ↓</button>
+
+</main>
 
 <div class="modal" id="modal" onclick="if(event.target===this)modal(false)">
   <div class="conteudo">
-    <button class="fechar" type="button" onclick="modal(false)" aria-label="Fechar">✕</button>
+    <button class="fechar" onclick="modal(false)" aria-label="Fechar">✕</button>
     <h2>🚀 Abra no navegador</h2>
     <ol>
       <li>No TikTok, toque nos <b>três pontinhos (⋯)</b>.</li>
       <li>Escolha <b>Abrir no navegador</b>.</li>
       <li>Se aparecer a opção, selecione <b>Chrome</b>.</li>
     </ol>
-    <button type="button" onclick="modal(false)">Entendi!</button>
+    <button onclick="modal(false)">Entendi!</button>
   </div>
 </div>
 
-<section class="vitrine-fixa">
-  <div class="hero">
-    <h2>🔥 Viralizou no Tik Tok</h2>
-  </div>
-  <main class="grid" id="produtos"></main>
+<section class="hero">
+  <h1>🔥 Viralizou no Tik Tok</h1>
 </section>
-
-<footer>
-  SHOPLINE PREMIUM © 2026<br>
-  Alguns links podem gerar comissão para nossa loja, sem custo adicional para você.
-</footer>
-
-<center>
-<script src="https://pl31016031.profitableratecpmnetwork.com/59/aa/af/59aaafe0dcda978256ba92a55b66def1.js"></script>
-</center>
 
 <script>
 const $=id=>document.getElementById(id);
 let pagina=1,carregando=false,temMais=true;
-
-/* Endereço da API local. Ao publicar, troque pela URL HTTPS da API. */
-const API_BASE="http://127.0.0.1:3000";
-
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-
-const urlSegura=u=>{
-  try{
-    const x=new URL(u);
-    return x.protocol==="https:"?x.href:"#";
-  }catch{
-    return "#";
-  }
-};
-
-function modal(abrir){
-  $("modal").classList.toggle("aberto",abrir);
-}
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape")modal(false);
-});
-
-$("busca").addEventListener("keydown",e=>{
-  if(e.key==="Enter")carregar(true);
-});
-
-$("ordem").addEventListener("change",()=>{
-  carregar(true);
-});
+const urlSegura=u=>{try{let x=new URL(u);return x.protocol==="https:"?x.href:"#"}catch{return "#"}};
+function modal(abrir){$("modal").classList.toggle("aberto",abrir)}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")modal(false)});
+$("busca").addEventListener("keydown",e=>{if(e.key==="Enter")carregar(true)});
+$("ordem").addEventListener("change",()=>carregar(true));
 
 async function carregar(nova=true){
-  if(carregando)return;
-  if(nova){
-    pagina=1;
-    temMais=true;
-    $("grid").innerHTML="";
-  }
-  if(!temMais)return;
-
-  carregando=true;
-  $("status").textContent="Carregando produtos...";
-  $("mais").hidden=true;
-
-  try{
-    const p=new URLSearchParams({
-      busca:$("busca").value.trim(),
-      page:pagina
-    });
-
-    const r=await fetch(API_BASE+"/api/produtos?"+p);
-    if(!r.ok)throw Error("Falha na API");
-
-    const json=await r.json();
-
-    /* Aceita tanto uma lista direta quanto uma resposta GraphQL */
-    const dados=Array.isArray(json)
-      ?json
-      :(json.data?.productOfferV2?.nodes||json.nodes||json.produtos||[]);
-
-    const produtos=[...dados];
-
-    if($("ordem").value==="price_asc"){
-      produtos.sort((a,b)=>Number(a.priceMin??a.price??0)-Number(b.priceMin??b.price??0));
-    }else if($("ordem").value==="price_desc"){
-      produtos.sort((a,b)=>Number(b.priceMin??b.price??0)-Number(a.priceMin??a.price??0));
-    }
-
-    produtos.forEach(x=>{
-      const nome=esc(x.productName||x.nome||"Produto");
-      const imagem=urlSegura(x.imageUrl||x.imagem||"");
-      const link=urlSegura(x.offerLink||x.linkAfiliado||x.productLink||"");
-      const preco=Number(x.priceMin??x.price??x.preco??0);
-      const precoMax=Number(x.priceMax??preco);
-
-      const precoTexto=preco>0
-        ?"R$ "+preco.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})
-        :"Ver preço";
-
-      const faixa=precoMax>preco
-        ?" a R$ "+precoMax.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})
-        :"";
-
-      const card=document.createElement("article");
-      card.className="card";
-
-      card.innerHTML=`
-        <img src="${esc(imagem)}" alt="${nome}" loading="lazy">
-        <div class="info">
-          <p class="nome">${nome}</p>
-          <div class="preco">${precoTexto}${faixa}</div>
-          <p class="detalhe">⭐ ${esc(x.ratingStar||x.rating||"—")} · ${esc(x.sales||0)} vendidos</p>
-          <a class="botao" href="${esc(link)}" target="_blank" rel="noopener noreferrer">VER OFERTA ↗</a>
-        </div>`;
-
-      $("grid").appendChild(card);
-    });
-
-    /* A rota atual da API retorna uma lista simples, sem paginação. */
-    temMais=!!json.data?.productOfferV2?.pageInfo?.hasNextPage;
-    pagina++;
-
-    $("status").textContent=$("grid").children.length
-      ?"Você está vendo os achadinhos disponíveis."
-      :"Nenhum produto encontrado.";
-
-    $("mais").hidden=!temMais;
-  }catch(e){
-    $("status").textContent="Não foi possível carregar os produtos. Verifique a API e tente novamente.";
-  }finally{
-    carregando=false;
-  }
+ if(carregando)return;
+ if(nova){pagina=1;temMais=true;$("grid").innerHTML=""}
+ if(!temMais)return;
+ carregando=true;$("status").textContent="Carregando produtos...";
+ $("mais").hidden=true;
+ try{
+  const p=new URLSearchParams({q:$("busca").value.trim(),sort:$("ordem").value,page:pagina});
+  const r=await fetch("/api/achadinhos?"+p);
+  if(!r.ok)throw Error();
+  const json=await r.json();
+  const dados=json.data?.productOfferV2;
+  if(!dados)throw Error();
+  const produtos=dados.nodes||[];
+  produtos.forEach(x=>{
+   const nome=esc(x.productName||"Produto");
+   const imagem=urlSegura(x.imageUrl);
+   const link=urlSegura(x.offerLink||x.productLink);
+   const preco=Number(x.priceMin??x.price??0);
+   const precoMax=Number(x.priceMax??preco);
+   const precoTexto=preco>0?"R$ "+preco.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}):"Ver preço";
+   const faixa=precoMax>preco?" a R$ "+precoMax.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}):"";
+   const card=document.createElement("article");
+   card.className="card";
+   card.innerHTML=`<img src="${esc(imagem)}" alt="${nome}" loading="lazy"><div class="info"><p class="nome">${nome}</p><div class="preco">${precoTexto}${faixa}</div><p class="detalhe">⭐ ${esc(x.ratingStar||"—")} · ${esc(x.sales||0)} vendidos</p><a class="botao" href="${esc(link)}" target="_blank" rel="noopener noreferrer">VER OFERTA ↗</a></div>`;
+   $("grid").appendChild(card);
+  });
+  temMais=!!dados.pageInfo?.hasNextPage;
+  pagina++;
+  $("status").textContent=$("grid").children.length?"Você está vendo os achadinhos disponíveis.": "Nenhum produto encontrado.";
+  $("mais").hidden=!temMais;
+ }catch(e){
+  $("status").textContent="Não foi possível carregar os produtos. Verifique a API e tente novamente.";
+ }finally{carregando=false}
 }
-
 carregar(true);
+</script>
 
-/* Vitrine fixa de produtos e links */
+<main class="grid" id="produtos"></main>
+
+<script>
+/*
+Produtos:
+[loja,nome,descrição,preço,imagem,link]
+S = Shopee | M = Mercado Livre
+*/
+
 const produtos=[
-
 ["S","Vitrine da Shopee","Acesse nossos produtos virais na Shopee","",
 "https://i.postimg.cc/vZcrTWsw/file-00000000342881fb93bfe24ef6fcbe9e.png",
 "https://collshp.com/shoplinepremium?view=storefront"],
@@ -382,42 +300,34 @@ const produtos=[
 ["S","Mochila De Nylon Dobrável Compacta Impermeável","Mochila para viagem, escola e academia.","R$ 14,98",
 "https://i.postimg.cc/3RYYPn4t/no-mark-React-Native-snapshot-image-228.png",
 "https://s.shopee.com.br/4Vaes7mnbN"]
-
 ];
 
 const produtosEl=document.getElementById("produtos");
 
 produtosEl.innerHTML=produtos.map(p=>{
-  const ml=p[0]==="M";
-  const vit=p[1].includes("Vitrine");
+const ml=p[0]==="M";
+const vit=p[1].includes("Vitrine");
 
-  return `
-  <article class="card">
-    <div class="pic">
-      <span class="tag ${ml?"ml":""}">
-        ${ml?"MERCADO LIVRE":"SHOPEE"}
-      </span>
-      <a href="${esc(p[5])}" target="_blank" rel="noopener noreferrer">
-        <img src="${esc(p[4])}" alt="${esc(p[1])}" loading="lazy">
-      </a>
-    </div>
-    <div class="info">
-      <h3>${esc(p[1])}</h3>
-      <p class="desc">${esc(p[2])}</p>
-      ${p[3]?`<div class="price">${esc(p[3])}</div>`:""}
-      <a class="btn ${ml?"ml":""}" href="${esc(p[5])}" target="_blank" rel="noopener noreferrer">
-        ${vit?(ml?"🛒 ACESSAR MERCADO LIVRE":"🛍️ ACESSAR SHOPEE"):"VER PRODUTO"}
-      </a>
-    </div>
-  </article>`;
+return `
+<article class="card">
+ <div class="pic">
+  <span class="tag ${ml?"ml":""}">
+   ${ml?"MERCADO LIVRE":"SHOPEE"}
+  </span>
+  <a href="${p[5]}" target="_blank" rel="noopener noreferrer">
+   <img src="${p[4]}" alt="${p[1]}" loading="lazy">
+  </a>
+ </div>
+ <div class="info">
+  <h2>${p[1]}</h2>
+  <p class="desc">${p[2]}</p>
+  ${p[3]?`<div class="price">${p[3]}</div>`:""}
+  <a class="btn ${ml?"ml":""}" href="${p[5]}" target="_blank" rel="noopener noreferrer">
+   ${vit?(ml?"🛒 ACESSAR MERCADO LIVRE":"🛍️ ACESSAR SHOPEE"):"VER PRODUTO"}
+  </a>
+ </div>
+</article>`;
 }).join("");
 </script>
-
-<br><br><br>
-
-<center>
-<script src="https://pl31016031.profitableratecpmnetwork.com/59/aa/af/59aaafe0dcda978256ba92a55b66def1.js"></script>
-</center>
-
 </body>
 </html>
